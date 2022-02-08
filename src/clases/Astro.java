@@ -1,9 +1,15 @@
 package clases;
 
+import java.util.Objects;
+
 public class Astro {
     private String nombre;
     private final String tipo;
     private static int numInstance=0;
+    private double brillo;
+    private double distancia;
+
+    //enum para hacer los tipos de astros
     public static enum TIPOS{
         ESTRELLA("ESTRELLA",0),NEBULOSA("NEBULOSA",1),GALAXIA("GALAXIA",2);
         private String descripcion;
@@ -21,10 +27,9 @@ public class Astro {
             return posicion;
         }
     }
-    private double brillo;
-    private double distancia;
 
-    //Constructor pòr defecto
+
+    //Constructor por defecto
     public Astro() {
         this.nombre = "SIRIUS";
         this.tipo = TIPOS.ESTRELLA.descripcion;
@@ -41,6 +46,8 @@ public class Astro {
         numInstance++;
     }
 
+    //getter y setter
+
     public static int getNumInstance() {
         return numInstance;
     }
@@ -53,23 +60,33 @@ public class Astro {
         this.nombre = nombre;
     }
 
-
-    public double consultor() {
-        //public double getBrillo() {
-        return brillo;
-    }
-
-    public void modificador(double brillo) {
-        //public void setBrillo(double brillo) {
-        this.brillo = brillo;
-    }
-
     public double getDistancia() {
         return distancia;
     }
 
     public void setDistancia(double distancia) {
         this.distancia = distancia;
+    }
+
+    //metodo consultor del atributo brillo
+    public double consultor() {
+        //public double getBrillo() {
+        return brillo;
+    }
+
+    //metodo modificador del atributo brillo
+    public void modificador(double brillo) {
+        //public void setBrillo(double brillo) {
+        this.brillo = brillo;
+    }
+
+   //metodo toString que sobrescribe el de Object
+    @Override
+    public String toString() {
+        //String valor=String.format("%.2f",distancia);
+        return "Nombre: "+ this.nombre + " tipo " + tipo + " (" + String.format ("%.2f",brillo) +
+                "," + String.format ("%.2f",distancia) + ")";
+        //return super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
 
     public double magnitudAbsoluta(){
@@ -80,15 +97,34 @@ public class Astro {
         return magnitud;
     }
 
-    @Override
-    public String toString() {
-        //String valor=String.format("%.2f",distancia);
+    //metodo masBrillante
+    public void masBrillante(){
+       if ((int) magnitudAbsoluta()==1){
 
-        return "Nombre: "+this.nombre+" tipo "+tipo+" ("+String.format("%.2f",brillo)+
-                ","+String.format("%.2f",distancia)+")";
-        //return super.toString(); //To change body of generated methods, choose Tools | Templates.
+           System.out.println("El astro actual es más brillante que el astro dado");
+
+       }else if ((int) magnitudAbsoluta()==0){
+
+           System.out.println("Ambos astros tienen la misma magnitud absoluta");
+
+       }else if ((int) magnitudAbsoluta()==-1){
+
+           System.out.println("El astro dado es más brillante que el astro actual");
+
+       }
     }
 
+    public void visibleCon(){
+        if (brillo<5){
+            System.out.println("El astro se ve a simple vista");
+        }else if (brillo>=5 && brillo<7){
+            System.out.println("El astro se ve con prismáticos");
+        }else if (brillo>=7 && brillo<=25){
+            System.out.println("El astro es visible con telescopio");
+        }else if (brillo>25){
+            System.out.println("El astro se puede ver con grandes telescopios");
+        }
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -120,7 +156,7 @@ public class Astro {
 
 
     }
-    /*
+/*
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -146,6 +182,6 @@ public class Astro {
         }
         return true;
     }
-    */
 
+*/
 }

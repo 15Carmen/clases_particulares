@@ -2,10 +2,6 @@ package clases;
 
 import clases.Astro;
 
-/**
- *
- * @author Luis
- */
 public class Catalogo {
 
     /**
@@ -51,6 +47,8 @@ public class Catalogo {
 
         Astro estrella3=new Astro();
         System.out.println(Astro.getNumInstance());
+
+
     }
 
 }

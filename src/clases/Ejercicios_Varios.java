@@ -54,7 +54,7 @@ public class Ejercicios_Varios {
         */
         //inicializar arreglos de Objetos
 
-
+/*
         try {
             Alumno luis=new Alumno("Luis","luzuriaga");
             System.out.println(luis.getTalla().EXTRAGRANDE);
