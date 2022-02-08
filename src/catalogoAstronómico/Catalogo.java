@@ -1,6 +1,4 @@
-package clases;
-
-import clases.Astro;
+package catalogoAstronómico;
 
 public class Catalogo {
 

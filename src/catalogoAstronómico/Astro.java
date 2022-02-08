@@ -1,6 +1,4 @@
-package clases;
-
-import java.util.Objects;
+package catalogoAstronómico;
 
 public class Astro {
     private String nombre;
