@@ -1,6 +1,8 @@
 package catalogoAstronómico;
 
-public class catalogoAstronomico {
+import clases.Astro;
+
+public class catalogoAstronomicoAnotaciones {
 //ATRIBUTOS
 
     //límite de mi arreglo
@@ -14,7 +16,7 @@ public class catalogoAstronomico {
 
     //constructor por defecto
 
-    public catalogoAstronomico(){
+    public catalogoAstronomicoAnotaciones(){
         catalogo=new Astro[MAX_ASTROS];
         //estos son contadores
         numAstros=0;
