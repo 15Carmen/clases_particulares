@@ -71,18 +71,18 @@ public class Astro {
     public String toString() {
         String _tipo = "";
         switch (tipo) {
-            case 0:
+            case 1:
                 _tipo = "ESTRELLA";
                 break;
-            case 1:
+            case 2:
                 _tipo = "NEBULOSA";
                 break;
             default:
                 _tipo = "GALAXIA";
         }
-        return "===============================================\n"+
-                "nombre: " + nombre + " tipo: " + _tipo + "(" + brillo + "," + distancia + ")\n"+
-                "===============================================\n";
+        return "==============================================="+ System.lineSeparator() +
+                "nombre: " + nombre + " tipo: " + _tipo + " (" + brillo + "," + distancia + ")"+System.lineSeparator()+
+                "===============================================" + System.lineSeparator();
     }
 
     @Override

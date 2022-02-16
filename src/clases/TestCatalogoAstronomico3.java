@@ -61,7 +61,7 @@ public class TestCatalogoAstronomico3 {
         try{
             System.out.println("Ingrese nombre de Astro");
             String nombre=teclado.next();
-            System.out.println("Ingrese tipo de Astro");
+            System.out.println("Ingrese tipo de Astro (1. Nebulosa, 2. Galaxia, 3. Estrella)");
             int tipo=teclado.nextInt();
             teclado.nextLine();//Limpiamos buffer de entrada
         /*double brillo=teclado.nextDouble();
