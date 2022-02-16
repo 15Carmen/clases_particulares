@@ -3,55 +3,36 @@ package clases;
 import java.util.Objects;
 
 public class Astro {
+
+    //<editor-fold desc="Atributos">
     private String nombre;
-    private final String tipo;
-    private static int numInstance=0;
-    private double brillo;
-    private double distancia;
 
-    //enum para hacer los tipos de astros
-    public static enum TIPOS{
-        ESTRELLA("ESTRELLA",0),NEBULOSA("NEBULOSA",1),GALAXIA("GALAXIA",2);
-        private String descripcion;
-        private int posicion;
+    private int tipo;
 
-        private TIPOS(String descripcion, int posicion){
-            this.descripcion = descripcion;
-            this.posicion = posicion;
-        }
+    private Double brillo;
 
-        public String getDescripcion() {
-            return descripcion;
-        }
-        public int getPosicion() {
-            return posicion;
-        }
-    }
+    private Double distancia;
 
-
-    //Constructor por defecto
-    public Astro() {
-        this.nombre = "SIRIUS";
-        this.tipo = TIPOS.ESTRELLA.descripcion;
-        this.brillo = -1.42;
-        this.distancia = 8.7;
-        numInstance++;
-    }
-    //Constructor
-    public Astro(String nombre, TIPOS tipo, double brillo, double distancia) {
+    //</editor-fold>
+    //<editor-fold desc="Constructor General ">
+    public Astro(String nombre, int tipo, Double brillo, Double distancia) {
         this.nombre = nombre;
-        this.tipo = tipo.descripcion;
+        this.tipo = tipo;
         this.brillo = brillo;
         this.distancia = distancia;
-        numInstance++;
     }
 
-    //getter y setter
-
-    public static int getNumInstance() {
-        return numInstance;
+    //</editor-fold>
+    //<editor-fold desc="Constructor por Defecto ">
+    public Astro() {
+        this.nombre = "Sirius";
+        this.tipo = 0;
+        this.brillo = -1.42;
+        this.distancia = 8.7;
     }
 
+    //</editor-fold>
+    //<editor-fold desc="Metodos Getters y Setters">
     public String getNombre() {
         return nombre;
     }
@@ -60,103 +41,52 @@ public class Astro {
         this.nombre = nombre;
     }
 
-    public double getDistancia() {
-        return distancia;
+    public int getTipo() {
+        return tipo;
     }
 
-    public void setDistancia(double distancia) {
-        this.distancia = distancia;
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
     }
 
-    //metodo consultor del atributo brillo
-    public double consultor() {
-        //public double getBrillo() {
+    public Double consultor() {
         return brillo;
     }
 
-    //metodo modificador del atributo brillo
-    public void modificador(double brillo) {
-        //public void setBrillo(double brillo) {
+    public void modificador(Double brillo) {
         this.brillo = brillo;
     }
 
-   //metodo toString que sobrescribe el de Object
+    public Double getDistancia() {
+        return distancia;
+    }
+
+    public void setDistancia(Double distancia) {
+        this.distancia = distancia;
+    }
+
+    //</editor-fold>
+    //<editor-fold desc="Metodos REdefinidos">
     @Override
     public String toString() {
-        //String valor=String.format("%.2f",distancia);
-        return "Nombre: "+ this.nombre + " tipo " + tipo + " (" + String.format ("%.2f",brillo) +
-                "," + String.format ("%.2f",distancia) + ")";
-        //return super.toString(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public double magnitudAbsoluta(){
-        double magnitud;
-        double log;
-        log=Math.log10(distancia);
-        magnitud=brillo+5*log;
-        return magnitud;
-    }
-
-    //metodo masBrillante
-    public void masBrillante(){
-       if ((int) magnitudAbsoluta()==1){
-
-           System.out.println("El astro actual es más brillante que el astro dado");
-
-       }else if ((int) magnitudAbsoluta()==0){
-
-           System.out.println("Ambos astros tienen la misma magnitud absoluta");
-
-       }else if ((int) magnitudAbsoluta()==-1){
-
-           System.out.println("El astro dado es más brillante que el astro actual");
-
-       }
-    }
-
-    public void visibleCon(){
-        if (brillo<5){
-            System.out.println("El astro se ve a simple vista");
-        }else if (brillo>=5 && brillo<7){
-            System.out.println("El astro se ve con prismáticos");
-        }else if (brillo>=7 && brillo<=25){
-            System.out.println("El astro es visible con telescopio");
-        }else if (brillo>25){
-            System.out.println("El astro se puede ver con grandes telescopios");
+        String _tipo = "";
+        switch (tipo) {
+            case 0:
+                _tipo = "ESTRELLA";
+                break;
+            case 1:
+                _tipo = "NEBULOSA";
+                break;
+            default:
+                _tipo = "GALAXIA";
         }
+        return "===============================================\n"+
+                "nombre: " + nombre + " tipo: " + _tipo + "(" + brillo + "," + distancia + ")\n"+
+                "===============================================\n";
     }
 
     @Override
-    public boolean equals(Object obj) {
 
-        if (this !=obj) {
-            return false;
-        }
-        if (obj == null) {
-            return false;
-        }
-
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-
-        //se hace un CAST
-        final Astro other = (Astro) obj;
-
-        if((this.nombre.equals(other.nombre))&&
-                (this.brillo==other.brillo)&&
-                (this.distancia==other.distancia) &&
-                (this.tipo==other.tipo)){
-            return true;
-        }else{
-            return false;
-
-
-        }
-
-
-    }
-/*
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -167,21 +97,60 @@ public class Astro {
         if (getClass() != obj.getClass()) {
             return false;
         }
+
         final Astro other = (Astro) obj;
-        if (Double.doubleToLongBits(this.brillo) != Double.doubleToLongBits(other.brillo)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.distancia) != Double.doubleToLongBits(other.distancia)) {
+
+        if (this.tipo != other.tipo) {
             return false;
         }
         if (!Objects.equals(this.nombre, other.nombre)) {
             return false;
         }
-        if (this.tipo != other.tipo) {
+        if (!Objects.equals(this.brillo, other.brillo)) {
             return false;
         }
-        return true;
+        /*
+        if(Objects.equals(this.distancia, other.distancia)){
+            return false;
+        }
+        return true;*/
+        return Objects.equals(this.distancia, other.distancia);
+
     }
 
-*/
+    //</editor-fold>
+    //<editor-fold desc="Metodos">
+    public double magnitudAbsoluta() {
+
+        double magnitud;
+        magnitud = brillo + 5 * Math.log(distancia);
+        return magnitud;
+
+    }
+
+    public int masBrillante(Astro obj) {
+
+        if (this.magnitudAbsoluta() == obj.magnitudAbsoluta()) {
+            return 0;
+        }
+        if  (this.magnitudAbsoluta()> obj.magnitudAbsoluta()){
+            return 1;
+        } else{
+            return -1;
+        }
+    }
+
+    public String visibleCon(){
+        if (this.brillo<5) {
+            return "A simple vista";
+        }
+        if (this.brillo>=5 && this.brillo<7) {
+            return "Con Prosmaticos";
+        }
+        if (this.brillo>=7 && this.brillo<=25) {
+            return "Con Telescopico";
+        }
+        return "Con Prismaticos";
+    }
+    //</editor-fold>
 }
